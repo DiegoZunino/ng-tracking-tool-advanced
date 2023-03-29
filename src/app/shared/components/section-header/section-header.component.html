@@ -1,0 +1,13 @@
+<ng-container *ngIf="title">
+  <div class="row mt-5 justify-content-end">
+    <div class="col">
+      <h2>{{ title }}</h2>
+    </div>
+    <div class="col-auto text-right">
+      <button class="btn" [routerLink]="_button.link" [ngClass]="[_button.type]">
+        {{ _button.label }}
+      </button>
+    </div>
+  </div>
+  <hr />
+</ng-container>

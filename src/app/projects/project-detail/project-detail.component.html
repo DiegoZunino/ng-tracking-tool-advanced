@@ -1,0 +1,16 @@
+<app-section-header title="Dettagli Progetto" [button]="{ label: 'Torna ai Progetti', link: '/projects', type: 'btn-primary' }">
+</app-section-header>
+
+<ng-container *ngIf="project$ | async as project">
+  <div *ngIf="!editMode" class="jumbotron">
+    <h1 class="display-4">{{ project.name }}</h1>
+    <p class="lead">{{ project.description }}</p>
+    <hr class="my-4">
+    <p>
+      <span>Codice: {{ project.code }} - Data Inizio: {{ project.start | date:'dd/MM/yyyy' }}</span>
+      <span *ngIf="project.end"> - Data Fine: {{ project.end | date:'dd/MM/yyyy' }}</span>
+    </p>
+    <button class="btn btn-primary" (click)="changeEditMode()">Modifica</button>
+  </div>
+  <app-project-form *ngIf="editMode" buttonLabel="Salva Progetto" [project]="project" (submitted)="updateProject($event)"></app-project-form>
+</ng-container>

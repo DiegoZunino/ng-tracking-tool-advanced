@@ -1,0 +1,44 @@
+{
+  "users": [
+    {
+      "email": "admin@acadevmy.com",
+      "password": "$2a$10$w5Ot7Tp79FGGj5ke/3KJJ.aYXa.Bq3JsoZd8mxoTuLLSOce7ZDrGi",
+      "role": "admin",
+      "id": 1
+    }
+  ],
+  "projects": [
+    {
+      "id": 1,
+      "code": "NHusYJl",
+      "name": "Progetto Alpha",
+      "description": "Lorem ipsum dolor sit amet.",
+      "start": "2019-01-30T00:00:00.000Z",
+      "end": "2019-03-15T00:00:00.000Z",
+      "priority": "medium",
+      "done": true,
+      "tasks": []
+    },
+    {
+      "id": 2,
+      "code": "SJieYKl",
+      "name": "Progetto Beta",
+      "description": "Lorem ipsum dolor sit amet.",
+      "start": "2019-03-30T00:00:00.000Z",
+      "end": "2019-06-15T00:00:00.000Z",
+      "priority": "low",
+      "done": true,
+      "tasks": []
+    },
+    {
+      "id": 3,
+      "code": "POjeGBs",
+      "name": "Progetto Gamma",
+      "description": "Lorem ipsum dolor sit amet.",
+      "start": "2019-08-15T00:00:00.000Z",
+      "priority": "low",
+      "done": false,
+      "tasks": []
+    }
+  ]
+}

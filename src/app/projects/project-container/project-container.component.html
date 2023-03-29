@@ -1,0 +1,17 @@
+<app-section-header title="I miei progetti" [button]="{ label: 'Torna alla Home', link: '/', type: 'btn-primary' }"></app-section-header>
+<app-project-search (searching)="searchProject($event)"></app-project-search>
+<hr />
+<app-project-form [quickMode]="true" (submitted)="addNewProject($event)"></app-project-form>
+<hr />
+
+<ng-container *ngIf="(projects$ | async) as projects">
+  <app-project-list *ngIf="projects.length > 0 ; else noProjects" class="col" [projects]="projects
+        | searchFilter: 'name' : searchedProject?.name || ''
+        | searchFilter: 'priority' : searchedProject?.priority || ''
+        | searchFilter: 'done' : searchedProject?.done?.toString() || ''" (selected)="selectProject($event)">
+  </app-project-list>
+</ng-container>
+
+<ng-template #noProjects>
+  <p>Non è presente alcun progetto</p>
+</ng-template>

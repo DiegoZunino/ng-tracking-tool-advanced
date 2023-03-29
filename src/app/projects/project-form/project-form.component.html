@@ -1,0 +1,51 @@
+<form #f="ngForm" (ngSubmit)="submitProjectForm(f)">
+  <div class="row mb-3">
+    <input type="hidden" class="form-control" name="id" [(ngModel)]="project.id">
+
+    <div class="col-4">
+      <input type="text" class="form-control" name="name" placeholder="Nome" required [(ngModel)]="project.name" #nameField="ngModel">
+      <p *ngIf="nameField.invalid && nameField.touched" class="text-danger">
+        <small>Il campo è richiesto</small>
+      </p>
+    </div>
+
+    <div class="col-2">
+      <select class="form-select" name="priority" required [(ngModel)]="project.priority" #priorityField="ngModel">
+        <option value="low">Low</option>
+        <option value="medium">Medium</option>
+        <option value="high">High</option>
+      </select>
+      <p *ngIf="priorityField.invalid && priorityField.touched" class="text-danger">
+        <small>Il campo è richiesto</small>
+      </p>
+    </div>
+
+    <div [ngClass]="{ 'col-3': !quickMode, 'col-6': quickMode }">
+      <input type="date" class="form-control" name="start" placeholder="Data Inizio" required [ngModel]="project.start | date:'yyyy-MM-dd'" (ngModelChange)="project.start = $event" #dateField="ngModel">
+      <p *ngIf="dateField.invalid && dateField.touched" class="text-danger">
+        <small>Il campo è richiesto</small>
+      </p>
+    </div>
+
+    <div *ngIf="!quickMode" class="col-3">
+      <input type="date" class="form-control" name="end" placeholder="Data Fine" required [ngModel]="project.end | date:'yyyy-MM-dd'" (ngModelChange)="project.end = $event"  #dateEndField="ngModel">
+      <p *ngIf="dateEndField.invalid && dateEndField.touched" class="text-danger">
+        <small>Il campo è richiesto</small>
+      </p>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col-12">
+      <textarea class="form-control" name="description" placeholder="Descrizione" required [(ngModel)]="project.description" #descriptionField="ngModel">
+      </textarea>
+      <p *ngIf="descriptionField.invalid && descriptionField.touched" class="text-danger">
+        <small>Il campo è richiesto</small>
+      </p>
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-primary" [disabled]="f.invalid">
+    {{ buttonLabel }}
+  </button>
+</form>
