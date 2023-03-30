@@ -12,6 +12,9 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li class="nav-item">
+          <a class="nav-link" *hasRole="'admin'" routerLink="/admin" routerLinkActive="active">Amministrazione</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" *isAuthenticated="false" routerLink="/auth" routerLinkActive="active">Accedi</a>
           <a class="nav-link" *isAuthenticated="true" isLogout>Logout</a>
         </li>

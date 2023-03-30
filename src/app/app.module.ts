@@ -18,6 +18,8 @@ import { AuthComponent } from './auth/auth.component';
 import {IsAuthenticatedDirective} from "./directives/is-authenticated.directive";
 import {AuthInterceptorService} from "./interceptors/auth-interceptor.service";
 import {IsLogoutDirective} from "./directives/is-logout.directive";
+import { AdminComponent } from './admin/admin.component';
+import {HasRoleDirective} from "./directives/has-role.directive";
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import {IsLogoutDirective} from "./directives/is-logout.directive";
     SectionHeaderComponent,
     AuthComponent,
     IsAuthenticatedDirective,
-    IsLogoutDirective
+    IsLogoutDirective,
+    HasRoleDirective,
+    AdminComponent
   ],
   imports: [
     BrowserModule,

@@ -5,6 +5,11 @@
       "password": "$2a$10$w5Ot7Tp79FGGj5ke/3KJJ.aYXa.Bq3JsoZd8mxoTuLLSOce7ZDrGi",
       "role": "admin",
       "id": 1
+    },
+    {
+      "email": "user@acadevmy.com",
+      "password": "$2a$10$vyBYESyXsi3WvU1a16nDVeB34G78wUQPUf8AkmU3KRDbe4TOW7NcK",
+      "id": 2
     }
   ],
   "projects": [
