@@ -1,4 +1,6 @@
-<div class="row">
+<app-section-header [title]="isLoginMode ? 'Accesso' : 'Registrazione'" [button]="{label: 'Torna alla Home', link: '/home', type: 'btn-primary'}"></app-section-header>
+
+<div class="row mt-5">
   <div class="col-xs-12 col-md-6 offset-md-3">
     <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
       <div class="mb-3">

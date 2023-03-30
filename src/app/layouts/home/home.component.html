@@ -1,1 +1,2 @@
-<app-section-header [title]="title" [button]="{ label: 'Vai a progetti', link: '/projects', type: 'btn-primary' }"></app-section-header>
+<app-section-header *isAuthenticated="true" [title]="title" [button]="{ label: 'Vai a progetti', link: '/projects', type: 'btn-primary' }"></app-section-header>
+<app-section-header *isAuthenticated="false" [title]="title" [button]="{ label: 'Accedi', link: '/auth', type: 'btn-primary' }"></app-section-header>

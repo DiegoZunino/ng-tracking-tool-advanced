@@ -1,29 +1,28 @@
 import {Directive, Input, OnDestroy, OnInit, TemplateRef, ViewContainerRef} from "@angular/core";
-import {AuthService} from "../auth/services/auth.service";
+import {AuthService} from "../../core/auth/services/auth.service";
 import {Subject, takeUntil} from "rxjs";
 
 @Directive({
-  selector: '[hasRole]'
+  selector:'[isAuthenticated]'
 })
-export class HasRoleDirective implements OnInit, OnDestroy{
-  @Input('hasRole') role!: string;
+export class IsAuthenticatedDirective implements OnInit, OnDestroy{
+  @Input('isAuthenticated') condition!: boolean;
+  private stop$ = new Subject<boolean>();
   private isVisible: boolean = false;
-  private stop$ =  new Subject<boolean>();
 
   constructor(private authService: AuthService, private viewContainerRef: ViewContainerRef, private templateRef: TemplateRef<any>) {}
 
   ngOnInit(): void {
     this.authService.user$.pipe(takeUntil(this.stop$)).subscribe(
       (user) => {
-        const role = user?.user.role;
-        if(!role || role !== this.role) {
-          this.viewContainerRef.clear();
-          this.isVisible = false;
-        } else {
-          if(!this.isVisible) {
+        if(user && this.condition || !user && !this.condition){
+          if(!this.isVisible){
             this.viewContainerRef.createEmbeddedView(this.templateRef);
             this.isVisible = true;
           }
+        } else {
+          this.viewContainerRef.clear();
+          this.isVisible = false;
         }
       }
     )

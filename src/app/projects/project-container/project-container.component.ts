@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Observable, tap } from 'rxjs';
 import { Project } from '../../models/project';
 import { SearchProject } from '../../models/search-project';
-import { ProjectService } from '../project.service';
+import { ProjectService } from '../services/project.service';
 
 @Component({
   selector: 'app-project-container',

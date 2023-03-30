@@ -1,5 +1,5 @@
 import {Directive, HostBinding, HostListener} from "@angular/core";
-import {AuthService} from "../auth/services/auth.service";
+import {AuthService} from "../../core/auth/services/auth.service";
 import {Router} from "@angular/router";
 
 @Directive({

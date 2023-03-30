@@ -1,14 +1,12 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
-import {environment} from "../../../environments/environment";
+import {environment} from "../../../../environments/environment";
 import {BehaviorSubject, Observable, tap} from "rxjs";
-import {AuthRequest, AuthResponse} from "../../models/auth.model";
-import {User} from "../../models/user.model";
+import {AuthRequest, AuthResponse} from "../../../models/auth.model";
+import {User} from "../../../models/user.model";
 import {Router} from "@angular/router";
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class AuthService {
   private userSubject = new BehaviorSubject<User | null>(null);
   public user$ = this.userSubject.asObservable();
