@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
@@ -15,6 +15,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { NavbarComponent } from './layouts/navbar/navbar.component';
 import { SectionHeaderComponent } from './shared/components/section-header/section-header.component';
 import { AuthComponent } from './auth/auth.component';
+import {IsAuthenticatedDirective} from "./directives/is-authenticated.directive";
+import {AuthInterceptorService} from "./interceptors/auth-interceptor.service";
+import {IsLogoutDirective} from "./directives/is-logout.directive";
 
 @NgModule({
   declarations: [
@@ -28,7 +31,9 @@ import { AuthComponent } from './auth/auth.component';
     HomeComponent,
     NavbarComponent,
     SectionHeaderComponent,
-    AuthComponent
+    AuthComponent,
+    IsAuthenticatedDirective,
+    IsLogoutDirective
   ],
   imports: [
     BrowserModule,
@@ -36,7 +41,9 @@ import { AuthComponent } from './auth/auth.component';
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

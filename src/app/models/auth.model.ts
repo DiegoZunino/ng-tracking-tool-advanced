@@ -8,6 +8,6 @@ export interface AuthResponse {
   user: {
     email: string;
     role: string;
-    is: string;
+    id: number;
   }
 }

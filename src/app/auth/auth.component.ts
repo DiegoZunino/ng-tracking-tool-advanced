@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {NgForm} from "@angular/forms";
-import {AuthService} from "./auth.service";
+import {AuthService} from "./services/auth.service";
+import {Observable} from "rxjs";
+import {AuthResponse} from "../models/auth.model";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-auth',
@@ -12,7 +15,7 @@ export class AuthComponent implements OnInit {
   isLoading: boolean = false;
   error: string | null = null;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -29,30 +32,20 @@ export class AuthComponent implements OnInit {
     this.isLoading = true;
     this.error = null;
 
-    if(this.isLoginMode){
-      this.authService.login(authForm.value).subscribe(
-        (response) => {
-          console.log(response)
-          this.isLoading = false;
-        },
-        (error) => {
-          console.log(error)
-          this.isLoading = false;
-          this.error = error.error
-        }
-      )
-    } else {
-      this.authService.signup(authForm.value).subscribe(
-        (response) => {
-          console.log(response)
-          this.isLoading = false;
-        },
-        (error) => {
-          console.log(error)
-          this.isLoading = false;
-          this.error = error.error
-        }
-      )
-    }
+    let authObservable$: Observable<AuthResponse> =
+        this.isLoginMode ?
+        this.authService.login(authForm.value) :
+        this.authService.signup(authForm.value);
+
+    authObservable$.subscribe(
+      () => {
+        this.router.navigateByUrl('/projects')
+        this.isLoading = false;
+      },
+      (error) => {
+        this.isLoading = false;
+        this.error = error.error
+      }
+    )
   }
 }

@@ -6,11 +6,14 @@
         <li class="nav-item">
           <a class="nav-link" routerLink="/home" routerLinkActive="active">Dashboard</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *isAuthenticated="true">
           <a class="nav-link" routerLink="/projects" routerLinkActive="active">Progetti</a>
         </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
         <li class="nav-item">
-          <a class="nav-link" routerLink="/auth" routerLinkActive="active">Accedi</a>
+          <a class="nav-link" *isAuthenticated="false" routerLink="/auth" routerLinkActive="active">Accedi</a>
+          <a class="nav-link" *isAuthenticated="true" isLogout>Logout</a>
         </li>
       </ul>
     </div>
