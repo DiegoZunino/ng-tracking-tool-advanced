@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Observable, switchMap } from 'rxjs';
-import { Project } from '../../models/project';
-import { ProjectService } from '../services/project.service';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {map, Observable} from 'rxjs';
+import {Project} from '../../models/project';
+import {ProjectService} from '../services/project.service';
+import {LoggingService} from "../../core/logging/logging.service";
 
 @Component({
   selector: 'app-project-detail',
@@ -14,18 +15,18 @@ export class ProjectDetailComponent implements OnInit {
   editMode = false;
 
   constructor(
+    private loggingService: LoggingService,
     private projectService: ProjectService,
-    private route: ActivatedRoute
+    private activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
-    this.project$ = this.route.paramMap.pipe(
-      switchMap((params) => {
-        const projectId = +(params.get('id') || 0);
+    this.project$ = this.activatedRoute.data.pipe(
+      map((data) => data['project'])
+    )
 
-        return this.projectService.get(projectId);
-      })
-    );
+    this.loggingService.addLog("Hello from ProjectDetailComponent!")
+    this.loggingService.consoleLogs();
   }
 
   changeEditMode(): void {

@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Project } from '../../models/project';
+import {LoggingService} from "../../core/logging/logging.service";
 
 @Component({
   selector: 'app-project-list',
@@ -10,9 +11,11 @@ export class ProjectListComponent implements OnInit {
   @Input() projects: Project[] = [];
   @Output() selected = new EventEmitter<Project>();
 
-  constructor() { }
+  constructor(private loggingService: LoggingService) { }
 
   ngOnInit(): void {
+    this.loggingService.addLog("Hello from ProjectListComponent!")
+    this.loggingService.consoleLogs();
   }
 
   select(project: Project): void {
